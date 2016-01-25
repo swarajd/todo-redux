@@ -1,6 +1,6 @@
 import * as types from '../constants/TodoActionTypes';
 
-export function addTodo(text) {
+export function addTodo(id, text) {
 	return { type: types.ADD_TODO, id, text };
 }
 

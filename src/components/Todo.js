@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
 
-const Todo = (props) => {
+const Todo = ({
+  completed,
+  text
+}) => {
   return (
     <li
       style={{
@@ -11,10 +14,12 @@ const Todo = (props) => {
       }}>
       {text}
     </li>
-  )
-}
+  );
+};
 
-Todo.propTypes: {
+Todo.propTypes =  {
   text: React.PropTypes.string,
-  id: React.PropTypes.number
-}
+  completed: React.PropTypes.bool
+};
+
+export default Todo;

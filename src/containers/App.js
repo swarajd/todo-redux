@@ -3,33 +3,40 @@
 import React, {PropTypes} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import FuelSavingsApp from '../components/FuelSavingsApp';
-import * as FuelSavingsActions from '../actions/fuelSavingsActions';
+
+// setting aside fuel savings stuff
+//import FuelSavingsApp from '../components/FuelSavingsApp';
+//import * as FuelSavingsActions from '../actions/fuelSavingsActions';
+
+// adding in the todo things
+import TodoApp from '../components/TodoApp';
+import * as todoActions from '../actions/todoActions';
 
 class App extends React.Component {
   render() {
-    const { fuelSavingsAppState, actions } = this.props;
+    const { todoAppState, actions } = this.props;
 
     return (
-        <FuelSavingsApp fuelSavingsAppState={fuelSavingsAppState} actions={actions} />
+        <TodoApp todoAppState={todoAppState} actions={actions} />
     );
   }
 }
 
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  fuelSavingsAppState: PropTypes.object.isRequired
+  //should be an array
+  todoAppState: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    fuelSavingsAppState: state.fuelSavingsAppState
+    todoAppState: state.todoAppState
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(FuelSavingsActions, dispatch)
+    actions: bindActionCreators(todoActions, dispatch)
   };
 }
 
