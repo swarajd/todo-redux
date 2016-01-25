@@ -5,6 +5,8 @@ let nextId = 3;
 
 const TodoApp = (props) => {
 
+  let input;
+
   const add = (text) => {
     props.actions.addTodo(nextId++, text);
   };
@@ -22,31 +24,25 @@ const TodoApp = (props) => {
         {todos.map(todo =>
           <Todo key={todo.id}
                 {...todo}
+                onClick={() => {
+                  toggle(todo.id);
+                }}
           />
         )}
       </ul>
-
+      <input type="text" ref={node => {
+          input = node;
+        }} />
+      <button onClick={() => {
+          add(input.value);
+          input.value = '';
+      }}>
+        add todo
+      </button>
     </div>
   );
 };
 
-/*
-
-onClick={toggle(todo.id)}
-
-<input type="text" ref={node => {
-    input = node;
-  }} />
-<button onClick={() => {
-    add(input.value);
-    input.value = '';
-}}>
-  add todo
-</button>
-
- */
-
-//todo app state is actually an array
 TodoApp.propTypes = {
   actions: React.PropTypes.object.isRequired,
   todoAppState: PropTypes.array.isRequired
